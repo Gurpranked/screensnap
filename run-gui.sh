@@ -3,15 +3,15 @@
 
 echo "=== Starting ScreenSnap GUI ==="
 
-# Start Ollama if not running
-if ! pgrep -x "ollama" > /dev/null; then
-    echo "Starting Ollama server..."
-    ollama serve &
-    sleep 3
-# If Ollama is not installed
-else 
+# Check if ollama is installed
+if ! command -v ollama 2>&1 /dev/null; then
 	echo "Ollama not installed. Please visit https://ollama.com/download to install Ollama"
-	exit 1
+    	exit 1
+# Start if exists
+else 
+	echo "Starting Ollama server..."
+    	ollama serve
+	sleep 3
 fi
 
 
